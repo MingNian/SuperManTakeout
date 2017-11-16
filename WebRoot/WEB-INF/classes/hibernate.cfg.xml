@@ -1,0 +1,28 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.query.substitutions">true 1, false 0</property> 
+		<!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
+		
+		<mapping resource="com/dzp/wm/pojo/Admin.hbm.xml"/>
+		<mapping resource="com/dzp/wm/pojo/CartItem.hbm.xml"/>
+		<mapping resource="com/dzp/wm/pojo/Category.hbm.xml"/>
+		<mapping resource="com/dzp/wm/pojo/Commodity.hbm.xml"/>
+		<mapping resource="com/dzp/wm/pojo/Evaluate.hbm.xml"/>
+		<mapping resource="com/dzp/wm/pojo/OrderBean.hbm.xml"/>
+		<mapping resource="com/dzp/wm/pojo/OrderItem.hbm.xml"/>
+		<mapping resource="com/dzp/wm/pojo/Reply.hbm.xml"/>
+		<mapping resource="com/dzp/wm/pojo/Shop.hbm.xml"/>
+		<mapping resource="com/dzp/wm/pojo/ShopDetail.hbm.xml"/>
+		<mapping resource="com/dzp/wm/pojo/User.hbm.xml"/>
+		<mapping resource="com/dzp/wm/pojo/UserAddress.hbm.xml"/>
+		<mapping resource="com/dzp/wm/pojo/ShopApply.hbm.xml"/>
+		<mapping resource="com/dzp/wm/pojo/SearchHistory.hbm.xml"/>
+	</session-factory>
+</hibernate-configuration>

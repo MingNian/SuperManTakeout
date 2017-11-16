@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+        SYSTEM
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.dzp.wm.pojo">
+	<class name="Commodity" table="t_commodity">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="commodityImg"/>
+		<property name="commodityName"/>
+		<property name="price"/>
+		<property name="status"/>
+		<property name="commodityRemark"/>
+		
+		<many-to-one name="category" column="categoryId" class="Category" not-null="true"/>
+	</class>
+</hibernate-mapping>

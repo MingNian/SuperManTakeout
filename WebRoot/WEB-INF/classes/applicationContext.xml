@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans-4.1.xsd 
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop-4.1.xsd 
+        http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
+     
+   <!-- 1.DataSource -->  
+    <bean id="datasource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+    	<property name="driverClass" value="org.gjt.mm.mysql.Driver"/>
+    	<property name="jdbcUrl" value="jdbc:mysql://10.40.3.110:3307/wm_db"/>
+    	<property name="user" value="root"/>
+    	<property name="password" value="root"/>
+    	<property name="initialPoolSize" value="10"/>
+    	<property name="maxPoolSize" value="50"/>
+    </bean>
+    
+    <!-- 2.SessionFactory -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+    	<property name="dataSource" ref="datasource"/>
+    	<property name="configLocation" value="classpath:hibernate.cfg.xml"/>
+    </bean>
+    
+    <!-- 3.transactionManager -->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+    	<property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    <!-- 4.事务增强 -->
+	<tx:advice id="tx_advice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true"/>
+			<tx:method name="*"/>
+		</tx:attributes>
+	</tx:advice>
+
+    <!-- 5.将事务织入到业务类中 -->
+    <aop:config>
+    	<aop:pointcut id="tx_pc" expression="execution(* com.dzp.wm.biz.impl.*.*(..))"/>
+    	<aop:advisor advice-ref="tx_advice" pointcut-ref="tx_pc"/>
+    </aop:config>
+    
+	<!-- <bean id="userDAO" class="com.gem.qqzone.dao.impl.UserDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean> -->
+	
+	
+	
+	<!-- user -->
+	<bean id="userDAO" class="com.dzp.wm.dao.impl.UserDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="userAddressDAO" class="com.dzp.wm.dao.impl.UserAddressDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="CartItemDAO" class="com.dzp.wm.dao.impl.CartItemDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="userBiz" class="com.dzp.wm.biz.impl.UserBizImpl">
+		<property name="userDAO" ref="userDAO"/>
+		<property name="shopApplyDAO" ref="shopApplyDAO"/>
+		<property name="userAddressDAO" ref="userAddressDAO"/>
+	</bean>
+	<bean id="CartItemBiz" class="com.dzp.wm.biz.impl.CartItemBizImpl">
+		<property name="cartItemDAO" ref="CartItemDAO"/>
+	</bean>
+	<bean id="UserAction" class="com.dzp.wm.actions.UserAction">
+		<property name="userBiz" ref="userBiz"/>
+		<property name="adminBiz" ref="adminBiz"/>
+		<property name="cartItemBiz" ref="CartItemBiz"/>
+		<property name="orderBeanBiz" ref="OrderBeanBiz"></property>
+		<property name="commodityBiz" ref="CommodityBiz"/>
+		<property name="evaluateBiz" ref="EvaluateBiz"/>
+	</bean>
+	
+	
+	<!-- admin -->
+	<bean id="adminDAO" class="com.dzp.wm.dao.impl.AdminDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="shopApplyDAO" class="com.dzp.wm.dao.impl.ShopApplyDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="shopDetailDAO" class="com.dzp.wm.dao.impl.ShopDetailDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="categoryDAO" class="com.dzp.wm.dao.impl.CategoryDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="adminBiz" class="com.dzp.wm.biz.impl.AdminBizImpl">
+		<property name="adminDAO" ref="adminDAO"/>
+		<property name="shopDAO" ref="ShopDAO"/>
+		<property name="shopApplyDAO" ref="shopApplyDAO"/>
+		<property name="categoryDAO" ref="categoryDAO"/>
+		<property name="shopDetailDAO" ref="shopDetailDAO"/>
+		<property name="userDAO" ref="userDAO"/>
+	</bean>
+	<bean id="loginAction" class="com.dzp.wm.actions.LoginAction">
+		<property name="userBiz" ref="userBiz"/>
+		<property name="adminBiz" ref="adminBiz"/>
+	</bean>
+	<bean id="adminAction" class="com.dzp.wm.actions.AdminAction">
+		<property name="adminBiz" ref="adminBiz"/>
+	</bean>
+	
+	
+	
+	<!-- shop -->
+	<bean id="CommodityDAO" class="com.dzp.wm.dao.impl.CommodityDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="OrderBeanDAO" class="com.dzp.wm.dao.impl.OrderBeanDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="EvaluateDAO" class="com.dzp.wm.dao.impl.EvaluateDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="ReplyDAO" class="com.dzp.wm.dao.impl.ReplyDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="ShopDAO" class="com.dzp.wm.dao.impl.ShopDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="CategoryDAO" class="com.dzp.wm.dao.impl.CategoryDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
+	
+	<bean id="CommodityBiz" class="com.dzp.wm.biz.impl.CommodityBizImpl">
+		<property name="commodityDAO" ref="CommodityDAO"/>
+	</bean>
+	<bean id="OrderBeanBiz" class="com.dzp.wm.biz.impl.OrderBeanBizImpl">
+		<property name="orderBeanDAO" ref="OrderBeanDAO"/>
+		
+	</bean>
+	<bean id="EvaluateBiz" class="com.dzp.wm.biz.impl.EvaluateBizImpl">
+		<property name="evaluateDAO" ref="EvaluateDAO"/>
+	</bean>
+	<bean id="ReplyBiz" class="com.dzp.wm.biz.impl.ReplyBizImpl">
+		<property name="replyDAO" ref="ReplyDAO"/>
+	</bean>
+	<bean id="ShopBiz" class="com.dzp.wm.biz.impl.ShopBizImpl">
+		<property name="shopDAO" ref="ShopDAO"/>
+	</bean>
+	<bean id="ShopDetailBiz" class="com.dzp.wm.biz.impl.ShopDetailBizImpl">
+		<property name="shopDetailDAO" ref="shopDetailDAO"/>
+	</bean>
+	<bean id="CategoryBiz" class="com.dzp.wm.biz.impl.CategoryBizImpl">
+		<property name="categoryDAO" ref="CategoryDAO"/>
+	</bean>
+	
+	<bean id="CommodityAction" class="com.dzp.wm.actions.CommodityAction">
+		<property name="commodityBiz" ref="CommodityBiz"/>
+		<property name="shopBiz" ref="ShopBiz"/>
+		<property name="categoryBiz" ref="CategoryBiz"/>
+	</bean>
+	<bean id="OrderBeanAction" class="com.dzp.wm.actions.OrderBeanAction">
+		<property name="orderBeanBiz" ref="OrderBeanBiz"/>
+		<property name="shopBiz" ref="ShopBiz"/>
+		<property name="replyBiz" ref="ReplyBiz"/>
+	</bean>
+	<bean id="EvaluateAction" class="com.dzp.wm.actions.EvaluateAction">
+		<property name="evaluateBiz" ref="EvaluateBiz"/>
+	</bean>
+	<bean id="ReplyAction" class="com.dzp.wm.actions.ReplyAction">
+		<property name="replyBiz" ref="ReplyBiz"/>
+	</bean>
+	<bean id="ShopAction" class="com.dzp.wm.actions.ShopAction">
+		<property name="shopBiz" ref="ShopBiz"/>
+		<property name="shopDetailBiz" ref="ShopDetailBiz"/>
+	</bean>
+	
+</beans>

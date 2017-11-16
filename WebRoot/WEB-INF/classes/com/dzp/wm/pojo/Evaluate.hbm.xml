@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+        SYSTEM
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.dzp.wm.pojo">
+	<class name="Evaluate" table="t_evaluate">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="evaluateDate"/>
+		<property name="content"/>
+		<property name="stars"/>
+		
+		<many-to-one name="shop" column="shopId" not-null="true"/>
+		<many-to-one name="user" column="userId" not-null="true"/>
+		<one-to-one name="reply" property-ref="evaluate" cascade="all"/>
+		<many-to-one name="orderBean" column="orderBeanId" unique-key="true"/>
+	</class>
+</hibernate-mapping>

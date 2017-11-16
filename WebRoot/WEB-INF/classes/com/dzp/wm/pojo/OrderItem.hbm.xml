@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+        SYSTEM
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.dzp.wm.pojo">
+	<class name="OrderItem" table="t_orderitem">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="count"/>
+		
+		<many-to-one name="commodity" column="commodityId" not-null="true"/>
+		<many-to-one name="orderBean" column="orderBeanId" not-null="true"/>
+		
+	</class>
+</hibernate-mapping>

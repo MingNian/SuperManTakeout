@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="shop" namespace="/shop" extends="struts-default">
+		<action name="*_CommodityAction" class="CommodityAction" method="{1}">
+			<result name="commodityManage">/frames/commodityManage.jsp</result>
+			<result name="commodityInfo">/frames/commodityInfo.jsp</result>
+			<result name="updateCommodity">/frames/updateCommodityInfo.jsp</result>
+			<result name="deleteCommodityManage">/frames/deleteCommodityManage.jsp</result>
+			<result name="updateDelCommodity">/frames/updateDelCommodity.jsp</result>
+			<result name="commodityIndex" type="redirectAction">
+    			<param name="actionName">preCommodity_CommodityAction</param>
+    			<param name="namespace">/shop</param>
+    		</result>
+    		<result name="delcommodityIndex" type="redirectAction">
+    			<param name="actionName">preDelCommodity_CommodityAction</param>
+    			<param name="namespace">/shop</param>
+    		</result>
+    		<result name="showCategory">/frames/showCategory.jsp</result>
+    		<result name="showEditCategory">/frames/editCategory.jsp</result>
+		</action>
+		<action name="*_EvaluateAction" class="EvaluateAction" method="{1}">
+			<result name="success">/frames/.jsp</result>
+		</action>
+		<action name="*_OrderBeanAction" class="OrderBeanAction" method="{1}">
+			<result name="pendingOrderBean">/frames/pendingOrderBean.jsp</result>
+			<result name="historyBill">/frames/historyBill.jsp</result>
+			<result name="orderItem">/frames/orderItem.jsp</result>
+			<result name="weekOrderBean">/frames/weekOrderBean.jsp</result>
+			<result name="monthOrderBean">/frames/monthOrderBean.jsp</result>
+			<result name="seasonOrderBean">/frames/seasonOrderBean.jsp</result>
+			<result name="todayOrderBean">/frames/todayOrderBean.jsp</result>
+			<result name="pendingOrderBeanList" type="redirectAction">
+    			<param name="actionName">prePending_OrderBeanAction</param>
+    			<param name="namespace">/shop</param>
+    		</result>
+    		<result name="historyBillList" type="redirectAction">
+    			<param name="actionName">preOrderBean_OrderBeanAction</param>
+    			<param name="namespace">/shop</param>
+    		</result>
+		</action>
+		<action name="*_OrderItemAction" class="OrderItemAction" method="{1}">
+			<result name="">/frames/.jsp</result>
+		</action>
+		<action name="*_ReplyAction" class="ReplyAction" method="{1}">
+			<result name="">/frames/.jsp</result>
+		</action>
+		<action name="*_ShopAction" class="ShopAction" method="{1}">
+			<result name="ShopManaTop">/frames/shopManaTop.jsp</result>
+			<result name="shopInfo">/frames/shopInfo.jsp</result>
+			<result name="index">/index.jsp</result>
+			<result name="getShop" type="redirectAction">
+    			<param name="actionName">getShopdetail_ShopAction</param>
+    			<param name="namespace">/shop</param>
+    		</result>
+    		
+		</action> 
+	</package>
+</struts> 

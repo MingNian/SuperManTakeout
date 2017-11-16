@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+        SYSTEM
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.dzp.wm.pojo">
+	<class name="Shop" table="t_shop">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		<property name="status"/>
+		<property name="docPath"/>
+		<property name="startTime"/>
+		<property name="closeTime"/>
+		<property name="shopName"/>
+		<property name="shopAddress"/>
+		
+		<one-to-one name="shopDetail" cascade="all"/>
+		
+		<many-to-one name="user" column="userId" unique="true"/>
+		
+		<set name="collectors" table="t_user_shop" cascade="all" inverse="false">
+			<key column="shopId"/>
+			<many-to-many class="User" column="userId"/>
+		</set>
+		
+		<set name="evaluates" table="t_evaluate" cascade="all" inverse="true">
+			<key column="shopId"/>
+			<one-to-many class="Evaluate"/>
+		</set>
+		
+		<set name="categorys" table="t_category" cascade="all" inverse="true">
+			<key column="shopId"/>
+			<one-to-many class="Category"/>
+		</set>
+		
+	</class>
+</hibernate-mapping>

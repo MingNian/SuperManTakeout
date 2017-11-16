@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+        SYSTEM
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.dzp.wm.pojo">
+	<class name="ShopDetail" table="t_shopdetail">
+		<id name="id">
+			<generator class="foreign">
+				<param name="property">shop</param>
+			</generator>
+		</id>
+		<property name="shopAddress"/>
+		<property name="shopImg"/>
+		<property name="notice"/>
+		<property name="shopRemark"/>
+		<property name="shopOpenTime"/>
+		<property name="duration"/>
+		<property name="leastMoney"/>
+		<property name="serviceMoney"/>
+		
+		<one-to-one name="shop"/>
+	</class>
+</hibernate-mapping>

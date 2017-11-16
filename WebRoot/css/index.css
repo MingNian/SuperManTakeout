@@ -1,0 +1,102 @@
+@CHARSET "UTF-8";
+
+body {
+	margin: 0px;
+	padding: 0px;
+	background-color: #F5F5F5;
+	overflow-x: hidden;
+}
+
+.whiteAddress {
+	color: #ddd;
+}
+
+.addressBar {
+	margin-top: 6px;
+}
+
+.searchText {
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+.searchText {
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+.searchText {
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow
+		ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
+		.15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s
+}
+
+.searchText:focus {
+	border-color: #66afe9;
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px
+		rgba(102, 175, 233, .6);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px
+		rgba(102, 175, 233, .6)
+}
+
+.hoverYellow {
+	
+}
+
+.marleft {
+	margin-top: 33px;
+	margin-left: 65px;
+	height: 6em;
+	line-height: 6em;
+	overflow: hidden;
+}
+
+.shopItem {
+	width: 230px;
+	height: 270px;
+	float: left;
+	margin-left: 3px;
+}
+
+.shopItem:HOVER {
+	background-color: #F5F5F5;
+}
+ 
+.commodityItem {
+	width: 200px;
+	height: 250;
+	float: left;
+}
+
+.commodityItem:HOVER {
+	background-color: #F5F5F5;
+}
+
+.myMenu {
+	width: 100%;
+	height: 55px;
+}
+
+.myMenu:HOVER {
+	background-color: #F5F5F5;
+}
+
+.ruzhu {
+	width: 243px;
+	height: 240px;
+	float: left;
+	background-color: white;
+	margin: 1px;
+	
+}
+
+.ruzhu:HOVER {
+	background-color: #F5F5F5;
+}

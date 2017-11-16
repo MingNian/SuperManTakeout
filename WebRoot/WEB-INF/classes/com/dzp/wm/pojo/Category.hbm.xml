@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+        SYSTEM
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.dzp.wm.pojo">
+	<class name="Category" table="t_category">
+		<id name="id">
+			<generator class="native"/>
+		</id>
+		
+		<property name="categoryName"/>
+		<property name="categoryRemark"/>
+		<property name="state"/>
+		<many-to-one name="shop" column="shopId" class="Shop" not-null="true"/>
+		
+		<set name="commodities" table="t_commodity" cascade="all" inverse="true">
+			<key column="categoryId"/>
+			<one-to-many class="Commodity"/>
+		</set>
+		
+	</class>
+</hibernate-mapping>

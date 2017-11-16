@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="admin" namespace="/admin" extends="struts-default">
+		<action name="*_AdminAction" class="com.dzp.wm.actions.AdminAction" method="{1}">
+			<result name="login" type="redirect">/login.jsp</result>
+			<result name="adminInfo">/admin/adminInfo.jsp</result>
+			<result name="shopApply">/admin/shopApply.jsp</result>
+			<result name="categoryManage">/admin/categoryManage.jsp</result>
+			<result name="showShops">/admin/showShops.jsp</result>
+			<result name="editCategory">/admin/editCategory.jsp</result>
+			<result name="showUsers">/admin/showUsers.jsp</result>
+			<result name="showUserHistory">/admin/showUserHistory.jsp</result>
+			<result name="shopApplyHistory">/admin/shopApplyHistory.jsp</result>
+		</action>
+	</package>
+</struts> 

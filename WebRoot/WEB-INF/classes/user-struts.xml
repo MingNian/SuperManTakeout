@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+	<package name="user" namespace="/User" extends="struts-default">
+		<action name="*_UserAction" class="UserAction" method="{1}">
+			<result name="shopDetail">/shop.jsp</result>
+			<result name="browsingShopFail">/browsingShopFail.jsp</result>
+			<result name="evaluates">/evaluate.jsp</result>
+			<result name="fillShopApply">/User/applySuccess.jsp</result>
+			<result name="myCollection">/User/myCollection.jsp</result>
+			<result name="pay">/my.jsp</result>
+			<result name="showShops">/showShops.jsp</result>
+			<result name="myInfo" type="redirect">/User/myInfo.jsp</result>
+			<result name="get">/User/orderBean.jsp</result>
+			<result name="orderBeanDetail">/User/orderBeanDetail.jsp</result>
+			<result name="addNewEvaluate">/my.jsp</result>
+			<result name="index">/index.jsp</result>
+			<result name="addresses">/User/userAddress.jsp</result>
+		</action>
+	</package>
+</struts> 

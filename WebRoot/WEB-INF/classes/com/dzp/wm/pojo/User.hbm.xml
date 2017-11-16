@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping
+        SYSTEM
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping package="com.dzp.wm.pojo">
+	<class name="User" table="t_user">
+		<id name="id" >
+			<generator class="native"/>
+		</id>
+		<property name="loginId"/>
+		<property name="pwd"/>
+		<property name="nickName"/>
+		<property name="realName"/>
+		<property name="gender"/>
+		<property name="tel"/>
+		<property name="email"/>
+		<property name="currAddress"/>
+		<property name="state"/>
+		<property name="headImg"/>
+		
+		<set name="searchHistories" cascade="all" inverse="true">
+			<key column="userId"/>
+			<one-to-many class="SearchHistory"/>
+		</set>
+		
+		<one-to-one name="shop" property-ref="user" cascade="save-update"/>
+		
+		<set name="collectShops" table="t_user_shop" cascade="all" inverse="false">
+			<key column="userId"/>
+			<many-to-many class="Shop" column="shopId"/>
+		</set>
+		
+		
+		<set name="evaluates" cascade="delete" inverse="true">
+			<key column="userId"/>
+			<one-to-many class="Evaluate"/>
+		</set>
+		
+		<set name="userAddresses" cascade="all" inverse="true">
+			<key column="userId"/>
+			<one-to-many class="UserAddress"/>
+		</set>
+		
+		<set name="orderBeans" cascade="delete" inverse="true">
+			<key column="userId"/>
+			<one-to-many class="OrderBean"/>
+		</set> 
+		
+		<set name="cartItems" cascade="all" >
+			<key column="userId"/>
+			<one-to-many class="CartItem"/>
+		</set>
+	</class>
+</hibernate-mapping>

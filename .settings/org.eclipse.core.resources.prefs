@@ -1,0 +1,14 @@
+eclipse.preferences.version=1
+encoding//WebRoot/admin/addCategory.jsp=UTF-8
+encoding//WebRoot/admin/admin_navbar.jsp=UTF-8
+encoding//WebRoot/index.jsp=UTF-8
+encoding//src/com/dzp/wm/actions/AdminAction.java=UTF-8
+encoding//src/com/dzp/wm/actions/LoginAction.java=UTF-8
+encoding//src/com/dzp/wm/biz/CommodityBiz.java=UTF-8
+encoding//src/com/dzp/wm/biz/OrderBeanBiz.java=UTF-8
+encoding//src/com/dzp/wm/dao/CommodityDAO.java=UTF-8
+encoding//src/com/dzp/wm/dao/OrderBeanDAO.java=UTF-8
+encoding//src/com/dzp/wm/dao/base/IBaseDAO.java=UTF-8
+encoding//src/com/dzp/wm/pojo/Commodity.java=UTF-8
+encoding//src/com/dzp/wm/pojo/Shop.java=UTF-8
+encoding//src/com/dzp/wm/util/EmailUtil.java=UTF-8
